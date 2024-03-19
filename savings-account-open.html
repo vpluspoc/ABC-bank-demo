@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Savings Account</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    .hero-section {
+      background-color: #f8f9fa;
+      padding: 100px 0;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+    <!-- Disclaimer -->
+  <div class="alert alert-warning  text-center mb-0" role="alert">
+    This webpage is for demonstration purposes only. Please do not submit personal information.
+  </div>
+  <div class="hero-section bg-primary text-white">
+    <div class="container">
+      <h1>Create New Savings Account</h1>
+    </div>
+  </div>
+
+  <div class="container my-5">
+    <form id="savingsAccountForm">
+      <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input type="text" class="form-control" id="firstName" required>
+      </div>
+      <div class="form-group">
+        <label for="lastName">Last Name</label>
+        <input type="text" class="form-control" id="lastName" required>
+      </div>
+      <div class="form-group">
+        <label for="addressLine1">Address Line 1</label>
+        <input type="text" class="form-control" id="addressLine1" required>
+      </div>
+      <div class="form-group">
+        <label for="addressLine2">Address Line 2</label>
+        <input type="text" class="form-control" id="addressLine2">
+      </div>
+      <div class="form-group">
+        <label for="nearestBranch">Nearest Branch</label>
+        <input type="text" class="form-control" id="nearestBranch" required>
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone</label>
+        <input type="text" class="form-control" id="phone" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" id="email" required>
+      </div>
+      <div class="form-group">
+        <label for="profession">Profession</label>
+        <input type="text" class="form-control" id="profession">
+      </div>
+      <div class="form-group">
+        <label for="note">Note</label>
+        <textarea class="form-control" id="note" rows="3"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('savingsAccountForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      // Collect form data
+      const formData = {
+        FirstName: document.getElementById('firstName').value,
+        LastName: document.getElementById('lastName').value,
+        Address: {
+          Line1: document.getElementById('addressLine1').value,
+          Line2: document.getElementById('addressLine2').value,
+          NearestBranch: document.getElementById('nearestBranch').value
+        },
+        Phone: document.getElementById('phone').value,
+        Email: document.getElementById('email').value,
+        Profession: document.getElementById('profession').value,
+        Note: document.getElementById('note').value
+      };
+
+      // Perform POST request
+      fetch('your_post_endpoint_here', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ content: formData })
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(data => {
+        console.log('Success:', data);
+        // Handle success message or redirect if necessary
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        // Handle error message
+      });
+    });
+  </script>
+</body>
+</html>
