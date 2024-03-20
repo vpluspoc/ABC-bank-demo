@@ -86,12 +86,14 @@
       };
 
       // Perform POST request
-      fetch('your_post_endpoint_here', {
+      fetch('https://gychnkmz.pegace.net/prweb/api/v1/case', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ content: formData })
+        body: JSON.stringify({ 
+caseTypeID: "Org1-App1-Work-CreateAccount",
+content: formData })
       })
       .then(response => {
         if (!response.ok) {
